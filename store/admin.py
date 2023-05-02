@@ -51,4 +51,5 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(Promo)
 class PromoAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'active']
+    list_filter = ('active',)
     sortable_by = 'active'
