@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Category, Subcategory, Brand, Product, Review, ProductImage, Order, Promo
+from store.models import Category, Subcategory, Brand, Product, Review, ProductImage, Order, Promo, Cart, CartProduct
 
 
 @admin.register(Category)
@@ -42,9 +42,19 @@ class ReviewAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'buyer', 'total_price']
+    list_display = ['id', 'cart', 'total_price']
     list_filter = ('status',)
     readonly_fields = ['updated_at', 'created_at']
+
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ['id', 'buyer']
+
+
+@admin.register(CartProduct)
+class CartProductAdmin(admin.ModelAdmin):
+    list_display = ['id', 'product', 'qty']
 
 
 @admin.register(Promo)
