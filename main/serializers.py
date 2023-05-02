@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2',
+        fields = ('password', 'password2',
                   'first_name', 'last_name',
                   'email', 'phone', 'avatar')
         extra_kwargs = {
@@ -35,7 +35,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data.get('username'),
+            username=validated_data.get('email'),
             email=validated_data.get('email'),
             first_name=validated_data.get('first_name'),
             last_name=validated_data.get('last_name')
@@ -49,3 +49,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         buyer.save()
 
         return user
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+
+    old_password = serializers.CharField(required=True, validators=[validate_password])
+    new_password = serializers.CharField(required=True, validators=[validate_password])
+    new_password_2 = serializers.CharField(required=True)
