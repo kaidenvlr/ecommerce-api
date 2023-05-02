@@ -6,5 +6,6 @@ urlpatterns = [
 
     # User
     path('login/', views.login, name='login'),
+    path('register/', views.RegisterUserAPIView.as_view(), name='register'),
 
 ]
