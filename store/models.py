@@ -128,8 +128,7 @@ class Review(models.Model):
 
 
 class Order(models.Model):
-    buyer = models.ForeignKey(Buyer, on_delete=models.SET_NULL, null=True)
-    products = models.ManyToManyField(Product)
+    cart = models.ForeignKey('Cart', on_delete=models.CASCADE, related_name='orders', null=True)
     total_price = models.FloatField()
     promo = models.ForeignKey('Promo', on_delete=models.CASCADE, null=True, blank=True)
 
@@ -148,6 +147,30 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+
+
+class Cart(models.Model):
+    buyer = models.ForeignKey(Buyer, on_delete=models.SET_NULL, null=True)
+    product = models.ManyToManyField('CartProduct')
+
+    def __str__(self):
+        return self.buyer.user.username
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
+
+
+class CartProduct(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    qty = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)])
+
+    def __str__(self):
+        return f'{self.product.title} - {self.qty} шт.'
+
+    class Meta:
+        verbose_name = 'Товар в корзине'
+        verbose_name_plural = 'Товары в корзине'
 
 
 class Promo(models.Model):
