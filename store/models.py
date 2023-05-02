@@ -14,7 +14,7 @@ class OrderStatusChoice(models.IntegerChoices):
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media/category', null=True, blank=True)
+    image = models.ImageField(upload_to='category', null=True, blank=True)
     slug = models.SlugField(max_length=200, null=True, blank=True)
 
     updated_at = models.DateTimeField(auto_now=True)
@@ -37,7 +37,7 @@ class Category(models.Model):
 
 class Subcategory(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media/subcategory', null=True, blank=True)
+    image = models.ImageField(upload_to='subcategory', null=True, blank=True)
     slug = models.SlugField(max_length=200, null=True, blank=True)
 
     updated_at = models.DateTimeField(auto_now=True)
@@ -61,7 +61,7 @@ class Subcategory(models.Model):
 
 class Brand(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media/brand', null=True, blank=True)
+    image = models.ImageField(upload_to='brand', null=True, blank=True)
 
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -101,7 +101,7 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    image = models.ImageField(upload_to='media/product', null=True, blank=True)
+    image = models.ImageField(upload_to='product', null=True, blank=True)
 
     def __str__(self):
         return self.id
