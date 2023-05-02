@@ -30,8 +30,7 @@ urlpatterns += [
     path('redoc/', get_schema_view(
         title="E-Commerce",
         description="Developed by kaidenvlr",
-        version="0.0.1",
-        url='127.0.0.1:8000/'
+        version="0.0.1"
     ), name='openapi-schema'),
     # ...
 ]
