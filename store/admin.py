@@ -17,7 +17,6 @@ class SubcategoryAdmin(admin.ModelAdmin):
     list_filter = ('active',)
 
 
-
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']
