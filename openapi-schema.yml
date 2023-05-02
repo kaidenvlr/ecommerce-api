@@ -1,8 +1,67 @@
 openapi: 3.0.2
 info:
-  title: ''
-  version: ''
+  title: 'E-Commerce'
+  version: '0.0.1'
+servers:
+  - url: http://{hostname}:{port}/
+    variables:
+      hostname:
+        enum:
+          - '127.0.0.1'
+          - '0.0.0.0'
+        default: '127.0.0.1'
+      port:
+        enum:
+          - '8000'
+          - '667'
+        default: '8000'
 paths:
+  /api/login/:
+    post:
+      operationId: createlogin
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/register/:
+    post:
+      operationId: createRegister
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+      tags:
+      - api
   /api-token-auth/:
     post:
       operationId: createAuthToken
@@ -30,6 +89,44 @@ paths:
       - api-token-auth
 components:
   schemas:
+    Register:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        password:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+          writeOnly: true
+        avatar:
+          type: string
+          format: binary
+          writeOnly: true
+      required:
+      - username
+      - password
+      - password2
+      - first_name
+      - last_name
+      - email
     AuthToken:
       type: object
       properties:
