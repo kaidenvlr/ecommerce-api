@@ -3,8 +3,8 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from store.models import Category, Subcategory
-from store.serializers import CategorySerializer, SubcategorySerializer
+from store.models import Subcategory
+from store.serializers import SubcategorySerializer
 
 
 # Subcategory
