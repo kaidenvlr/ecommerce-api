@@ -11,7 +11,7 @@ from store.serializers import BrandSerializer
 @csrf_exempt
 @api_view(('POST',))
 @permission_classes((permissions.IsAdminUser,))
-def add_category(request):
+def add_brand(request):
     brand_serializer = BrandSerializer(data=request.data)
     if brand_serializer.is_valid():
         brand_serializer.save()
@@ -26,7 +26,7 @@ def add_category(request):
 
 @api_view(('GET',))
 @permission_classes((permissions.AllowAny,))
-def get_one_category(request):
+def get_one_brand(request):
     try:
         brand = Brand.objects.get(id=request.query_params.get('id'))
     except Exception as error:
@@ -38,7 +38,7 @@ def get_one_category(request):
 
 @api_view(('GET',))
 @permission_classes((permissions.AllowAny,))
-def get_all_categories(request):
+def get_all_brands(request):
     brand = Brand.objects.all()
     brand_serializer = BrandSerializer(brand, many=True)
     return Response(brand_serializer.data, status=status.HTTP_200_OK)
@@ -46,7 +46,7 @@ def get_all_categories(request):
 
 @api_view(('PUT',))
 @permission_classes((permissions.IsAdminUser,))
-def update_category(request):
+def update_brand(request):
     try:
         brand = Brand.objects.get(id=request.data.get('id'))
     except Exception as error:
@@ -61,7 +61,7 @@ def update_category(request):
 
 @api_view(('DELETE',))
 @permission_classes((permissions.IsAdminUser,))
-def delete_category(request):
+def delete_brand(request):
     try:
         brand = Brand.objects.get(id=request.data.get('id'))
     except Exception as error:
