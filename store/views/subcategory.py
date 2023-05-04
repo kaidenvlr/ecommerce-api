@@ -18,6 +18,9 @@ def add_subcategory(request):
 
         subcategory = Subcategory.objects.get(id=subcategory_serializer.data.get('id'))
         subcategory.active = True
+        subcategory.category.active = True
+
+        subcategory.category.save()
         subcategory.save()
 
         return Response(subcategory_serializer.data, status=status.HTTP_201_CREATED)
