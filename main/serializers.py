@@ -6,6 +6,13 @@ from rest_framework.validators import UniqueValidator
 from main.models import Buyer
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Buyer
+        fields = ['user', 'number', 'avatar']
+        depth = 1
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         required=True,
