@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from store.models import Category, Subcategory, Brand
+from main.serializers import UserSerializer
+from store.models import Category, Subcategory, Brand, Product, Review
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,3 +22,21 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ['id', 'title', 'image', 'active']
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    buyer = UserSerializer()
+
+    class Meta:
+        model = Review
+        fields = ['id', 'content', 'star', 'buyer']
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer()
+    subcategory = SubcategorySerializer()
+    review = ReviewSerializer()
+
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'price', 'discount', 'image', 'review']
