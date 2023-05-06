@@ -23,4 +23,8 @@ urlpatterns = [
     path('get-brands', views.brand.get_all_brands, name='get-brands'),
     path('update-brand', views.brand.update_brand, name='update-brand'),
     path('delete-brand', views.brand.delete_brand, name='delete-brand'),
+
+    # Review
+    path('add-review', views.review.add_review, name='add-review'),
+    path('get-reviews', views.review.get_all_review, name='get-reviews'),
 ]
