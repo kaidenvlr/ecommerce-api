@@ -41,7 +41,8 @@ class ProductImageSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     brand = BrandSerializer()
     subcategory = SubcategorySerializer()
-    review = ReviewSerializer()
+    review = ReviewSerializer(many=True)
+    image = ProductImageSerializer(many=True)
 
     class Meta:
         model = Product
