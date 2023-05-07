@@ -11,7 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
+    category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Subcategory
@@ -25,7 +25,7 @@ class BrandSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    buyer = UserSerializer()
+    buyer = UserSerializer(read_only=True)
 
     class Meta:
         model = Review
@@ -39,9 +39,9 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    brand = BrandSerializer()
-    subcategory = SubcategorySerializer()
-    review = ReviewSerializer(many=True)
+    brand = BrandSerializer(read_only=True)
+    subcategory = SubcategorySerializer(read_only=True)
+    review = ReviewSerializer(many=True, read_only=True)
     image = ProductImageSerializer(many=True)
 
     class Meta:
