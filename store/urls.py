@@ -27,4 +27,11 @@ urlpatterns = [
     # Review
     path('add-review', views.review.add_review, name='add-review'),
     path('get-reviews', views.review.get_all_review, name='get-reviews'),
+
+    # Product
+    path('add-product', views.product.add_product, name='add-product'),
+    path('get-product', views.product.get_one_product, name='get-product'),
+    path('get-products', views.product.get_all_products, name='get-products'),
+    path('update-product', views.product.update_product, name='update-product'),
+    path('delete-product', views.product.delete_product, name='delete-product'),
 ]
