@@ -34,4 +34,8 @@ urlpatterns = [
     path('get-products', views.product.get_all_products, name='get-products'),
     path('update-product', views.product.update_product, name='update-product'),
     path('delete-product', views.product.delete_product, name='delete-product'),
+
+    # Product Image
+    path('add-product-image', views.product.add_product_image, name='add-product-image'),
+    path('delete-product-images', views.product.delete_product_images, name='delete-product-images'),
 ]
