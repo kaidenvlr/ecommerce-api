@@ -84,7 +84,7 @@ class Product(models.Model):
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
-    image = models.ManyToManyField('ProductImage')
+    image = models.ManyToManyField('ProductImage', related_name='product')
     review = models.ManyToManyField('Review')
 
     updated_at = models.DateTimeField(auto_now=True)
